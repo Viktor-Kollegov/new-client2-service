@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-@FeignClient(name = "book-service", url = "${book-service.url}"
-        , configuration = FeignConfig.class, fallback = BookServiceFallback.class)
-public interface FeignConnector {
+@FeignClient(name = "book-service-update", url = "${book-service-update.url}"
+        , configuration = FeignConfig.class)
+public interface FeignUpdateConnector {
 
     @GetMapping("/show")
     List<Book> getAllBooksList();

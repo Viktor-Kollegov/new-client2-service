@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 public class NewClientController {
     private final NewClientService newClientService;
     private final Environment env;
-    private final Logger logger = Logger.getLogger(NewClientController.class.getName());
+    private final Logger LOG = Logger.getLogger(NewClientController.class.getName());
 
     public NewClientController(NewClientService newClientService, Environment env) {
         this.newClientService = newClientService;
@@ -24,21 +24,16 @@ public class NewClientController {
 
     @RequestMapping("/")
     public String home() {
-        String home = "Client-Service running at port: " + env.getProperty("local.server.port");
-        logger.info(home);
+        String home = "Client2-Service running at port: " + env.getProperty("local.server.port");
+        LOG.info(home);
         return home;
     }
 
-    @GetMapping("/getAllBooksByFeignClient")
-    public List<Book> getAllBooksList() {
-        logger.info("Get data from database (Feign Client on client-service side)");
-        return newClientService.getAllBooksList();
+    @GetMapping("/getAllData")
+    public List<Book> getAllData() {
+        LOG.info("Get data from database (Feign Client on client2-service side)");
+        return newClientService.getAllData();
     }
 
-    @GetMapping("/getAllBooksByRestTemplate")
-    public String data() {
-        logger.info("Get data from database (RestTemplate on client-service side)");
-        return newClientService.data();
-    }
 
 }
